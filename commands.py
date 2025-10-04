@@ -235,7 +235,7 @@ class Commands(object):
         for command, regex in self._command_re:
             if not prefix:
                 if not command.mention_as_prefix:
-                    return 
+                    continue
             if command.flagged: 
                 match = re.search(rf"^[ \n]*({regex})([^ \t\n\u200b]+)?(?:[ \t\n\u200b]+(.+)?)?$", content, re.DOTALL)
                 if match:

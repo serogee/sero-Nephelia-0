@@ -310,6 +310,9 @@ class DB_json(object):
         os.remove(self.path)
 
     def forget(self):
+        if self.cached:
+            for key, item in self.data.items():
+                item.forget()
         del self._control[self.path]
 
 class DB(object):
@@ -407,4 +410,14 @@ class DB(object):
                 yield file[:-5], json.load(f)
 
     def forget(self):
+        if self.cached:
+            for key, item in self.data.items():
+                item.forget()
         del self._control[self.path]
+
+class db:
+
+    control = dict()
+
+    @classmethod
+    def connect()
